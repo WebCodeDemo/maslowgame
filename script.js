@@ -15,19 +15,28 @@
         let statusEffects = [];
         let day = 1;
 
-        function updateDisplay() {
-            let needsHtml = '';
+        function updateNeeds() {
+            const needLevels = {
+                'physiological': document.querySelector('#physiological .need-fill'),
+                'safety': document.querySelector('#safety .need-fill'),
+                'love-belonging': document.querySelector('#love-belonging .need-fill'),
+                'esteem': document.querySelector('#esteem .need-fill'),
+                'self-actualization': document.querySelector('#self-actualization .need-fill')
+            };
+
             for (let need in needs) {
-                needsHtml += `
-                    <div>
-                        <p>${needs[need].name}: ${needs[need].value.toFixed(1)}</p>
-                        <div class="need-bar">
-                            <div class="need-fill" style="width: ${needs[need].value}%"></div>
-                        </div>
-                    </div>
-                `;
+                if (needLevels[need]) {
+                    needLevels[need].style.width = `${needs[need].value}%`;
+            
+                    // Update the label to include the value
+                    const label = document.querySelector(`#${need} .need-label`);
+                    label.textContent = `${needs[need].name}: ${needs[need].value.toFixed(1)}`;
+                }
             }
-            document.getElementById('needs-display').innerHTML = needsHtml;
+        }
+
+        function updateDisplay() {
+            updateNeeds()
             document.getElementById('money-value').textContent = money;
             document.getElementById('money-fill').style.width = (money / 10) + '%';
             document.getElementById('fame-value').textContent = fame;
