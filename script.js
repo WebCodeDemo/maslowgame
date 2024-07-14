@@ -262,10 +262,12 @@ function updateScore() {
     else if (percentage >= 10) adjective = "Failing";
     else adjective = "Critical";
 
+
     document.getElementById('score-display').innerHTML = `
+        <h3>Score</h3>
         <p>Day: ${day}</p>
-        <p>Total Score: ${totalScore.toFixed(1)} / ${maxScore}</p>
-        <p>Life Status: ${adjective}</p>
+        <p class="score">${totalScore.toFixed(1)} / ${maxScore}</p>
+        <p class="life-status">${adjective}</p>
     `;
 }
 
