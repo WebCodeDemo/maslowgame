@@ -113,6 +113,89 @@
 #fame-fill { background-color: #2196F3; }
 #health-fill { background-color: #F44336; }
 #fitness-fill { background-color: #FF9800; }
+
+#needs-pyramid {
+  width: 300px;
+  height: 300px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.need-level {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.need-level:hover {
+  transform: translateX(10px);
+  box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
+}
+
+#self-actualization {
+  bottom: 240px;
+  width: 20%;
+  left: 40%;
+  background-color: #FFC107;
+}
+
+#esteem {
+  bottom: 180px;
+  width: 40%;
+  left: 30%;
+  background-color: #FF9800;
+}
+
+#love-belonging {
+  bottom: 120px;
+  width: 60%;
+  left: 20%;
+  background-color: #FF5722;
+}
+
+#safety {
+  bottom: 60px;
+  width: 80%;
+  left: 10%;
+  background-color: #F44336;
+}
+
+#physiological {
+  bottom: 0;
+  width: 100%;
+  background-color: #E91E63;
+}
+
+.need-label {
+  flex: 1;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.need-bar {
+  flex: 1;
+  height: 10px;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.need-fill {
+  height: 100%;
+  width: 50%; /* This will be updated dynamically by your JavaScript */
+  background-color: rgba(0,0,0,0.3);
+  transition: width 0.3s ease;
+}
+        
     </style>
 </head>
 <body>
@@ -154,7 +237,28 @@
     </div>
   </div>
 </div>        
-        <div id="needs-display"></div>
+        <div id="needs-pyramid">
+  <div class="need-level" id="self-actualization">
+    <span class="need-label">Self-Actualization</span>
+    <div class="need-bar"><div class="need-fill"></div></div>
+  </div>
+  <div class="need-level" id="esteem">
+    <span class="need-label">Esteem</span>
+    <div class="need-bar"><div class="need-fill"></div></div>
+  </div>
+  <div class="need-level" id="love-belonging">
+    <span class="need-label">Love/Belonging</span>
+    <div class="need-bar"><div class="need-fill"></div></div>
+  </div>
+  <div class="need-level" id="safety">
+    <span class="need-label">Safety</span>
+    <div class="need-bar"><div class="need-fill"></div></div>
+  </div>
+  <div class="need-level" id="physiological">
+    <span class="need-label">Physiological</span>
+    <div class="need-bar"><div class="need-fill"></div></div>
+  </div>
+</div>
         <div id="actions">
             <button onclick="performAction('eat')">Eat ($10)</button>
             <button onclick="performAction('sleep')">Sleep</button>
