@@ -4,281 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Simulation: Maslow's Hierarchy</title>
-    <style>
-        #game-container { width: 800px; margin: 0 auto; }
-        #needs-display, #resources-display, #health-display { display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .need-bar, .resource-bar, .health-bar { width: 150px; height: 20px; background-color: #ddd; margin-bottom: 10px; }
-        .need-fill, .resource-fill, .health-fill { height: 100%; }
-        .need-fill { background-color: #4CAF50; }
-        #money-fill { background-color: #FFD700; }
-        #fame-fill { background-color: #FF69B4; }
-        #health-fill { background-color: #FF6347; }
-        #fitness-fill { background-color: #1E90FF; }
-        #actions { margin-top: 20px; }
-        button { margin: 5px; }
-        #status-effects, #score-display { margin-top: 20px; }
-        #smartphone {
-  width: 300px;
-  height: 600px;
-  background-color: #1a1a1a;
-  border-radius: 40px;
-  position: relative;
-  margin: 20px auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  border: 2px solid #333;
-}
-
-#phone-frame {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background-color: #000;
-  border-radius: 35px;
-  overflow: hidden;
-}
-
-#phone-screen {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  background-color: #f0f0f0;
-  border-radius: 30px;
-  overflow: hidden;
-}
-
-#notification-area {
-  padding: 20px;
-  overflow-y: auto;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.notification {
-  background-color: white;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.notification h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.notification p {
-  margin: 0 0 10px 0;
-  font-size: 14px;
-}
-
-.resource-bar, .health-bar {
-  height: 8px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.resource-fill, .health-fill {
-  height: 100%;
-  width: 50%; /* This will be updated dynamically by your JavaScript */
-  transition: width 0.3s ease;
-}
-
-#money-notification {
-  background-color: #e8f5e9;
-  border-left: 5px solid #4CAF50;
-}
-
-#fame-notification {
-  background-color: #e3f2fd;
-  border-left: 5px solid #2196F3;
-}
-
-#health-notification {
-  background-color: #ffebee;
-  border-left: 5px solid #F44336;
-}
-
-#fitness-notification {
-  background-color: #fff3e0;
-  border-left: 5px solid #FF9800;
-}
-
-#money-fill { background-color: #4CAF50; }
-#fame-fill { background-color: #2196F3; }
-#health-fill { background-color: #F44336; }
-#fitness-fill { background-color: #FF9800; }
-
-        
-#needs-pyramid {
-  width: 500px;  /* Increased from 300px */
-  height: 400px;
-  margin: 50px auto;
-  position: relative;
-}
-
-.need-level {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;  /* Increased padding */
-  transition: all 0.3s ease;
-}
-
-.need-level:hover {
-  transform: translateX(10px);
-  box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
-}
-
-#self-actualization {
-  bottom: 240px;
-  width: 60%;  /* Increased from 20% */
-  left: 20%;  /* Adjusted to center */
-  background-color: #FFC107;
-}
-
-#esteem {
-  bottom: 180px;
-  width: 70%;  /* Increased from 40% */
-  left: 15%;  /* Adjusted to center */
-  background-color: #FF9800;
-}
-
-#love-belonging {
-  bottom: 120px;
-  width: 80%;  /* Increased from 60% */
-  left: 10%;  /* Adjusted to center */
-  background-color: #FF5722;
-}
-
-#safety {
-  bottom: 60px;
-  width: 90%;  /* Increased from 80% */
-  left: 5%;  /* Adjusted to center */
-  background-color: #F44336;
-}
-
-#physiological {
-  bottom: 0;
-  width: 100%;
-  background-color: #E91E63;
-}
-
-.need-label {
-  flex: 2;  /* Increased from 1 to give more space to the label */
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  white-space: nowrap;  /* Prevents text from wrapping */
-  overflow: hidden;
-  text-overflow: ellipsis;  /* Adds ... if text is too long */
-}
-
-.need-bar {
-  flex: 1;
-  height: 10px;
-  background-color: rgba(0,0,0,0.1);
-  border-radius: 5px;
-  overflow: hidden;
-  margin-left: 10px;  /* Added some space between label and bar */
-}
-
-.need-fill {
-  height: 100%;
-  width: 50%; /* This will be updated dynamically by your JavaScript */
-  background-color: rgba(0,0,0,0.3);
-  transition: width 0.3s ease;
-}
-        #phone-pyramid-display {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-#smartphone, #needs-pyramid {
-  flex: 1;
-  margin: 0 20px;
-}
-        
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="game-container">
         <h1>Life Simulation: Maslow's Hierarchy</h1>
-<div id="phone-pyramid-display">
-        <div id="smartphone">
-  <div id="phone-frame">
-    <div id="phone-screen">
-      <div id="notification-area">
-        <div class="notification" id="money-notification">
-          <h3>Freedom Bank</h3>
-          <p>Balance: $<span id="money-value"></span></p>
-          <div class="resource-bar">
-            <div id="money-fill" class="resource-fill"></div>
-          </div>
+        
+        <div id="main-display">
+            <div id="smartphone">
+                <div id="phone-frame">
+                    <div id="phone-screen">
+                        <div id="notification-area">
+                            <div id="money-notification" class="notification">
+                                <h3>Freedom Bank</h3>
+                                <p>Balance: $<span id="money-value">0</span></p>
+                                <div class="resource-bar">
+                                    <div id="money-fill" class="resource-fill"></div>
+                                </div>
+                            </div>
+                            <div id="fame-notification" class="notification">
+                                <h3>MicroBlogger</h3>
+                                <p>Fame: <span id="fame-value">0</span></p>
+                                <div class="resource-bar">
+                                    <div id="fame-fill" class="resource-fill"></div>
+                                </div>
+                            </div>
+                            <div id="health-notification" class="notification">
+                                <h3>BioDoctor</h3>
+                                <p>Health: <span id="health-value">0</span></p>
+                                <div class="health-bar">
+                                    <div id="health-fill" class="health-fill"></div>
+                                </div>
+                            </div>
+                            <div id="fitness-notification" class="notification">
+                                <h3>FitGuru</h3>
+                                <p>Fitness: <span id="fitness-value">0</span></p>
+                                <div class="health-bar">
+                                    <div id="fitness-fill" class="health-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="needs-pyramid">
+                <div id="self-actualization" class="need-level">
+                    <span class="need-label">Self-Actualization: <span class="need-value">0</span></span>
+                    <div class="need-bar"><div class="need-fill"></div></div>
+                </div>
+                <div id="esteem" class="need-level">
+                    <span class="need-label">Esteem: <span class="need-value">0</span></span>
+                    <div class="need-bar"><div class="need-fill"></div></div>
+                </div>
+                <div id="love-belonging" class="need-level">
+                    <span class="need-label">Love/Belonging: <span class="need-value">0</span></span>
+                    <div class="need-bar"><div class="need-fill"></div></div>
+                </div>
+                <div id="safety" class="need-level">
+                    <span class="need-label">Safety: <span class="need-value">0</span></span>
+                    <div class="need-bar"><div class="need-fill"></div></div>
+                </div>
+                <div id="physiological" class="need-level">
+                    <span class="need-label">Physiological: <span class="need-value">0</span></span>
+                    <div class="need-bar"><div class="need-fill"></div></div>
+                </div>
+            </div>
         </div>
-        <div class="notification" id="fame-notification">
-          <h3>MicroBlogger</h3>
-          <p>Fame: <span id="fame-value"></span></p>
-          <div class="resource-bar">
-            <div id="fame-fill" class="resource-fill"></div>
-          </div>
-        </div>
-        <div class="notification" id="health-notification">
-          <h3>BioDoctor</h3>
-          <p>Health: <span id="health-value"></span></p>
-          <div class="health-bar">
-            <div id="health-fill" class="health-fill"></div>
-          </div>
-        </div>
-        <div class="notification" id="fitness-notification">
-          <h3>FitGuru</h3>
-          <p>Fitness: <span id="fitness-value"></span></p>
-          <div class="health-bar">
-            <div id="fitness-fill" class="health-fill"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>        
-        <div id="needs-pyramid">
-  <div class="need-level" id="self-actualization">
-    <span class="need-label">Self-Actualization</span>
-    <div class="need-bar"><div class="need-fill"></div></div>
-  </div>
-  <div class="need-level" id="esteem">
-    <span class="need-label">Esteem</span>
-    <div class="need-bar"><div class="need-fill"></div></div>
-  </div>
-  <div class="need-level" id="love-belonging">
-    <span class="need-label">Love/Belonging</span>
-    <div class="need-bar"><div class="need-fill"></div></div>
-  </div>
-  <div class="need-level" id="safety">
-    <span class="need-label">Safety</span>
-    <div class="need-bar"><div class="need-fill"></div></div>
-  </div>
-  <div class="need-level" id="physiological">
-    <span class="need-label">Physiological</span>
-    <div class="need-bar"><div class="need-fill"></div></div>
-  </div>
-</div>
-</div>
+
         <div id="actions">
             <button onclick="performAction('eat')">Eat ($10)</button>
             <button onclick="performAction('sleep')">Sleep</button>
@@ -290,9 +83,10 @@
             <button onclick="performAction('performShow')">Perform Show ($50)</button>
             <button onclick="performAction('seeDoctor')">See Doctor ($100)</button>
         </div>
+
         <div id="status-effects"></div>
         <div id="score-display"></div>
-        <p id="message"></p>
+        <div id="message"></div>
     </div>
 
     <script src="script.js"></script>
