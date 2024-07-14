@@ -195,12 +195,26 @@
   background-color: rgba(0,0,0,0.3);
   transition: width 0.3s ease;
 }
+        #phone-pyramid-display {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#smartphone, #needs-pyramid {
+  flex: 1;
+  margin: 0 20px;
+}
         
     </style>
 </head>
 <body>
     <div id="game-container">
         <h1>Life Simulation: Maslow's Hierarchy</h1>
+<div id="phone-pyramid-display">
         <div id="smartphone">
   <div id="phone-frame">
     <div id="phone-screen">
@@ -258,6 +272,7 @@
     <span class="need-label">Physiological</span>
     <div class="need-bar"><div class="need-fill"></div></div>
   </div>
+</div>
 </div>
         <div id="actions">
             <button onclick="performAction('eat')">Eat ($10)</button>
