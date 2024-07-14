@@ -22,54 +22,42 @@
 <body>
     <div id="game-container">
         <h1>Life Simulation: Maslow's Hierarchy</h1>
-        <div id="phone-container">
+        <div id="smartphone">
   <div id="phone-frame">
     <div id="phone-screen">
       <div id="notification-area">
-        <div class="notification freedom-bank">
-          <div class="app-icon">💰</div>
-          <div class="notification-content">
-            <h3>Freedom Bank</h3>
-            <p>Balance: $<span id="money-value"></span></p>
-            <div class="resource-bar">
-              <div id="money-fill" class="resource-fill"></div>
-            </div>
+        <div class="notification" id="money-notification">
+          <h3>Freedom Bank</h3>
+          <p>Balance: $<span id="money-value"></span></p>
+          <div class="resource-bar">
+            <div id="money-fill" class="resource-fill"></div>
           </div>
         </div>
-        <div class="notification microblogger">
-          <div class="app-icon">🌟</div>
-          <div class="notification-content">
-            <h3>MicroBlogger</h3>
-            <p>Fame: <span id="fame-value"></span></p>
-            <div class="resource-bar">
-              <div id="fame-fill" class="resource-fill"></div>
-            </div>
+        <div class="notification" id="fame-notification">
+          <h3>MicroBlogger</h3>
+          <p>Fame: <span id="fame-value"></span></p>
+          <div class="resource-bar">
+            <div id="fame-fill" class="resource-fill"></div>
           </div>
         </div>
-        <div class="notification bio-doctor">
-          <div class="app-icon">🩺</div>
-          <div class="notification-content">
-            <h3>BioDoctor</h3>
-            <p>Health: <span id="health-value"></span></p>
-            <div class="health-bar">
-              <div id="health-fill" class="health-fill"></div>
-            </div>
+        <div class="notification" id="health-notification">
+          <h3>BioDoctor</h3>
+          <p>Health: <span id="health-value"></span></p>
+          <div class="health-bar">
+            <div id="health-fill" class="health-fill"></div>
           </div>
         </div>
-        <div class="notification fit-guru">
-          <div class="app-icon">💪</div>
-          <div class="notification-content">
-            <h3>FitGuru</h3>
-            <p>Fitness: <span id="fitness-value"></span></p>
-            <div class="health-bar">
-              <div id="fitness-fill" class="health-fill"></div>
-            </div>
+        <div class="notification" id="fitness-notification">
+          <h3>FitGuru</h3>
+          <p>Fitness: <span id="fitness-value"></span></p>
+          <div class="health-bar">
+            <div id="fitness-fill" class="health-fill"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div>        
         <div id="needs-display"></div>
         <div id="actions">
             <button onclick="performAction('eat')">Eat ($10)</button>
