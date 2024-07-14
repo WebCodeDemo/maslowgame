@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+#game-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#main-display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Smartphone Styles */
+#smartphone {
+    width: 300px;
+    height: 600px;
+    background-color: #1a1a1a;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#phone-frame {
+    background-color: #ffffff;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.notification {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.notification h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.resource-bar, .health-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.resource-fill, .health-fill {
+    height: 100%;
+    width: 50%;
+    transition: width 0.3s ease;
+}
+
+#money-fill { background-color: #4CAF50; }
+#fame-fill { background-color: #2196F3; }
+#health-fill { background-color: #F44336; }
+#fitness-fill { background-color: #FF9800; }
+
+/* Needs Pyramid Styles */
+#needs-pyramid {
+    width: 400px;
+    height: 300px;
+    position: relative;
+}
+
+.need-level {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.need-level:hover {
+    transform: translateX(10px);
+    box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
+}
+
+#self-actualization {
+    bottom: 240px;
+    width: 60%;
+    left: 20%;
+    background-color: #FFC107;
+}
+
+#esteem {
+    bottom: 180px;
+    width: 70%;
+    left: 15%;
+    background-color: #FF9800;
+}
+
+#love-belonging {
+    bottom: 120px;
+    width: 80%;
+    left: 10%;
+    background-color: #FF5722;
+}
+
+#safety {
+    bottom: 60px;
+    width: 90%;
+    left: 5%;
+    background-color: #F44336;
+}
+
+#physiological {
+    bottom: 0;
+    width: 100%;
+    background-color: #E91E63;
+}
+
+.need-label {
+    flex: 2;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.need-bar {
+    flex: 1;
+    height: 10px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.need-fill {
+    height: 100%;
+    width: 50%;
+    background-color: rgba(0,0,0,0.3);
+    transition: width 0.3s ease;
+}
+
+/* Action Buttons */
+#actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#actions button:hover {
+    background-color: #45a049;
+}
+
+/* Status Effects and Messages */
+#status-effects, #score-display, #message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#status-effects p, #score-display p, #message {
+    margin: 5px 0;
+}
