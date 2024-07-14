@@ -19,9 +19,9 @@
             const needLevels = {
                 'physiological': document.querySelector('#physiological .need-fill'),
                 'safety': document.querySelector('#safety .need-fill'),
-                'love-belonging': document.querySelector('#love-belonging .need-fill'),
+                'love': document.querySelector('#love-belonging .need-fill'),
                 'esteem': document.querySelector('#esteem .need-fill'),
-                'self-actualization': document.querySelector('#self-actualization .need-fill')
+                'actualization': document.querySelector('#self-actualization .need-fill')
             };
 
             for (let need in needs) {
