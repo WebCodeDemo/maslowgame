@@ -1,65 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Simulation: Maslow's Hierarchy</title>
-    <style>
-        #game-container { width: 800px; margin: 0 auto; }
-        #needs-display, #resources-display, #health-display { display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .need-bar, .resource-bar, .health-bar { width: 150px; height: 20px; background-color: #ddd; margin-bottom: 10px; }
-        .need-fill, .resource-fill, .health-fill { height: 100%; }
-        .need-fill { background-color: #4CAF50; }
-        #money-fill { background-color: #FFD700; }
-        #fame-fill { background-color: #FF69B4; }
-        #health-fill { background-color: #FF6347; }
-        #fitness-fill { background-color: #1E90FF; }
-        #actions { margin-top: 20px; }
-        button { margin: 5px; }
-        #status-effects, #score-display { margin-top: 20px; }
-    </style>
-</head>
-<body>
-    <div id="game-container">
-        <h1>Life Simulation: Maslow's Hierarchy</h1>
-        <div id="resources-display">
-            <div>
-                <p>Money: $<span id="money-value"></span></p>
-                <div class="resource-bar"><div id="money-fill" class="resource-fill"></div></div>
-            </div>
-            <div>
-                <p>Fame: <span id="fame-value"></span></p>
-                <div class="resource-bar"><div id="fame-fill" class="resource-fill"></div></div>
-            </div>
-        </div>
-        <div id="health-display">
-            <div>
-                <p>Health: <span id="health-value"></span></p>
-                <div class="health-bar"><div id="health-fill" class="health-fill"></div></div>
-            </div>
-            <div>
-                <p>Fitness: <span id="fitness-value"></span></p>
-                <div class="health-bar"><div id="fitness-fill" class="health-fill"></div></div>
-            </div>
-        </div>
-        <div id="needs-display"></div>
-        <div id="actions">
-            <button onclick="performAction('eat')">Eat ($10)</button>
-            <button onclick="performAction('sleep')">Sleep</button>
-            <button onclick="performAction('exercise')">Exercise ($5)</button>
-            <button onclick="performAction('work')">Work</button>
-            <button onclick="performAction('socialize')">Socialize ($20)</button>
-            <button onclick="performAction('learn')">Learn ($30)</button>
-            <button onclick="performAction('create')">Create</button>
-            <button onclick="performAction('performShow')">Perform Show ($50)</button>
-            <button onclick="performAction('seeDoctor')">See Doctor ($100)</button>
-        </div>
-        <div id="status-effects"></div>
-        <div id="score-display"></div>
-        <p id="message"></p>
-    </div>
 
-    <script>
         const needs = {
             physiological: { value: 100, weight: 5, name: "Physiological" },
             safety: { value: 80, weight: 4, name: "Safety" },
@@ -338,6 +277,3 @@
         }
 
         updateDisplay();
-    </script>
-</body>
-</html>
