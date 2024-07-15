@@ -103,6 +103,7 @@ h1 {
     height: auto;
     position: relative;
     margin-bottom: 20px;
+    left: -50px;
 }
 
 .need-level {
