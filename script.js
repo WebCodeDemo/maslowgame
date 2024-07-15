@@ -52,73 +52,73 @@ function performAction(action) {
     lastAction = action;
     switch(action) {
         case 'eat':
-            if (money >= 10) {
-                health = Math.min(100, health + 5);
-                money -= 10;
-                needs.physiological.value = Math.min(100, needs.physiological.value + 10);
+            if (money >= 50) {
+                health = Math.min(100, health + 15);
+                money -= 50;
+                needs.physiological.value = Math.min(100, needs.physiological.value + 25);
             } else {
                 showMessage("Not enough money to eat!");
                 return;
             }
             break;
         case 'sleep':
-            needs.safety.value = Math.min(100, needs.safety.value + 10);
-            health = Math.min(100, health + 10);
+            needs.safety.value = Math.min(100, needs.safety.value + 20);
+            health = Math.min(100, health + 20);
             day++;
             break;
         case 'exercise':
-            if (money >= 5) {
-                fitness = Math.min(100, fitness + 10);
-                needs.esteem.value = Math.min(100, needs.esteem.value + 15);
-                money -= 5;
-                health = Math.min(100, health + 5);
+            if (money >= 100) {
+                fitness = Math.min(100, fitness + 25);
+                needs.esteem.value = Math.min(100, needs.esteem.value + 30);
+                money -= 100;
+                health = Math.min(100, health + 10);
             } else {
                 showMessage("Not enough money to exercise!");
                 return;
             }
             break;
         case 'work':
-            needs.safety.value = Math.min(100, needs.safety.value + 20);
-            needs.esteem.value = Math.min(100, needs.esteem.value + 10);
-            money += 50;
-            fitness = Math.max(0, fitness - 2);
+            needs.safety.value = Math.min(100, needs.safety.value + 30);
+            needs.esteem.value = Math.min(100, needs.esteem.value + 20);
+            money += 150;
+            fitness = Math.max(0, fitness - 5);
             break;
         case 'socialize':
             if (money >= 20) {
-                needs.love.value = Math.min(100, needs.love.value + 20);
-                needs.esteem.value = Math.min(100, needs.esteem.value + 10);
+                needs.love.value = Math.min(100, needs.love.value + 35);
+                needs.esteem.value = Math.min(100, needs.esteem.value + 20);
                 money -= 20;
-                fame = Math.min(100, fame + 5);
+                fame = Math.min(100, fame + 0.5);
             } else {
                 showMessage("Not enough money to socialize!");
                 return;
             }
             break;
         case 'learn':
-            if (money >= 30) {
-                needs.actualization.value = Math.min(100, needs.actualization.value + 15);
-                needs.esteem.value = Math.min(100, needs.esteem.value + 10);
-                money -= 30;
+            if (money >= 200) {
+                needs.actualization.value = Math.min(100, needs.actualization.value + 30);
+                needs.esteem.value = Math.min(100, needs.esteem.value + 20);
+                money -= 200;
             } else {
                 showMessage("Not enough money to learn!");
                 return;
             }
             break;
         case 'create':
-            needs.actualization.value = Math.min(100, needs.actualization.value + 20);
-            needs.esteem.value = Math.min(100, needs.esteem.value + 15);
-            fame = Math.min(100, fame + 10);
-            fitness = Math.max(0, fitness - 5);
+            needs.actualization.value = Math.min(100, needs.actualization.value + 40);
+            needs.esteem.value = Math.min(100, needs.esteem.value + 30);
+            fame = Math.min(100, fame + 1);
+            fitness = Math.max(0, fitness - 10);
             break;
         case 'performShow':
-            if (money >= 50) {
-                needs.esteem.value = Math.min(100, needs.esteem.value + 25);
-                needs.actualization.value = Math.min(100, needs.actualization.value + 15);
-                money -= 50;
-                fame = Math.min(100, fame + 20);
-                let earnings = Math.floor(fame * 5);
+            if (money >= 1000) {
+                needs.esteem.value = Math.min(100, needs.esteem.value + 40);
+                needs.actualization.value = Math.min(100, needs.actualization.value + 30);
+                money -= 1000;
+                fame = Math.min(100, fame + 1);
+                let earnings = Math.floor(fame * 15);
                 money += earnings;
-                fitness = Math.max(0, fitness - 10);
+                fitness = Math.max(0, fitness - 20);
                 showMessage(`You earned $${earnings} from your performance!`);
             } else {
                 showMessage("Not enough money to perform a show!");
@@ -126,9 +126,9 @@ function performAction(action) {
             }
             break;
         case 'seeDoctor':
-            if (money >= 100) {
-                health = Math.min(100, health + 30);
-                money -= 100;
+            if (money >= 300) {
+                health = Math.min(100, health + 50);
+                money -= 300;
             } else {
                 showMessage("Not enough money to see the doctor!");
                 return;
@@ -136,16 +136,16 @@ function performAction(action) {
             break;
     }
 
-    // Decrease all needs slightly each turn
+    // Decrease all needs more intensely each turn
     for (let need in needs) {
         if (need !== 'physiological') {
-            needs[need].value = Math.max(0, needs[need].value - 2);
+            needs[need].value = Math.max(0, needs[need].value - 5);
         }
     }
 
     // Health and fitness natural decrease
-    health = Math.max(0, health - 1);
-    fitness = Math.max(0, fitness - 1);
+    health = Math.max(0, health - 3);
+    fitness = Math.max(0, fitness - 3);
 
     // Update physiological need based on health and fitness
     needs.physiological.value = (health + fitness) / 2;
@@ -154,6 +154,7 @@ function performAction(action) {
     updateDisplay();
     checkGameState();
 }
+
 
 // Apply random status effects
 function applyRandomStatusEffects() {
