@@ -29,7 +29,15 @@ function updateDisplay() {
 
     // Update needs pyramid
     for (let need in needs) {
-        const element = document.getElementById(need === 'actualization' ? 'self-actualization' : need);
+        let elementId;
+        if (need === 'actualization') {
+            elementId = 'self-actualization';
+        } else if (need === 'love') {
+            elementId = 'love-belonging';
+        } else {
+            elementId = need;
+        }
+        const element = document.getElementById(elementId);
         if (element) {
             element.querySelector('.need-value').textContent = needs[need].value.toFixed(1);
             element.querySelector('.need-fill').style.width = `${needs[need].value}%`;
